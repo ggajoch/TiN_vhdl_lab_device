@@ -81,7 +81,6 @@ BEGIN
 		-- hold reset state for 100 ns.
 		main_connector <= (others => 'Z');
 		wait for 100 ns;
-		
 
 		-------------- THROUGHPUT --------------
 		switches <= "0000";
@@ -99,15 +98,15 @@ BEGIN
 		assert main_connector(4 to 7) = "0111";
 		assert main_connector(8 to 15) = "ZZZZZZZZ";
 		assert led = "0011";
-	
+
 		wait for 98 ns;
-		
+
 		-------------- 4b SHIFT REG --------------
-		
-		switches <= "0001";
+
+		switches       <= "0001";
 		main_connector <= (others => 'Z');
 		wait for 1 ns;
-		
+
 		main_connector(1) <= '0';
 		gen_clk(main_connector(0));
 		gen_clk(main_connector(0));
@@ -115,21 +114,21 @@ BEGIN
 		gen_clk(main_connector(0));
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "0000ZZZZZZZZZZ";
-		
+
 		main_connector(1) <= '1';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "1000ZZZZZZZZZZ";
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "1100ZZZZZZZZZZ";
-		
+
 		main_connector(1) <= '0';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "0110ZZZZZZZZZZ";
-		
+
 		main_connector(1) <= '1';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "1011ZZZZZZZZZZ";
-		
+
 		main_connector(1) <= '0';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "0101ZZZZZZZZZZ";
@@ -140,106 +139,105 @@ BEGIN
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "0000ZZZZZZZZZZ";
 
-
 		wait for 60 ns;
-		
+
 		-------------- parity gen --------------
-		
+
 		main_connector <= (others => 'Z');
 		wait for 1 ns;
 		switches <= "0010";
 		wait for 1 ns;
-		
+
 		main_connector(1 to 15) <= "000000000000000";
 		wait for 1 ns;
 		assert main_connector(0) = '0';
-		
+
 		main_connector(1 to 15) <= "111111111111111";
 		wait for 1 ns;
 		assert main_connector(0) = '1';
-		
+
 		main_connector(1 to 15) <= "101010101010101";
 		wait for 1 ns;
 		assert main_connector(0) = '0';
-		
+
 		main_connector(1 to 15) <= "010101010101010";
 		wait for 1 ns;
 		assert main_connector(0) = '1';
-		
+
 		main_connector(1 to 15) <= "000000111111111";
 		wait for 1 ns;
 		assert main_connector(0) = '1';
-		
+
 		main_connector(1 to 15) <= "111111111000000";
 		wait for 1 ns;
 		assert main_connector(0) = '1';
-		
+
 		main_connector(1 to 15) <= "111001101001010";
 		wait for 1 ns;
 		assert main_connector(0) = '0';
-		
+
 		main_connector(1 to 15) <= "011001100110011";
 		wait for 1 ns;
 		assert main_connector(0) = '0';
-		
+
 		main_connector(1 to 15) <= "011101100110011";
 		wait for 1 ns;
 		assert main_connector(0) = '1';
-		
+
 		wait for 88 ns;
-		
+
 		-------------- parity gen with error --------------
-		
+
 		main_connector <= (others => 'Z');
 		wait for 1 ns;
 		switches <= "0011";
 		wait for 1 ns;
-		
+
 		main_connector(1 to 15) <= "000000000000000";
 		wait for 1 ns;
 		assert main_connector(0) = '1';
-		
+
 		main_connector(1 to 15) <= "111111111111111";
 		wait for 1 ns;
 		assert main_connector(0) = '0';
-		
+
 		main_connector(1 to 15) <= "101010101010101";
 		wait for 1 ns;
 		assert main_connector(0) = '1';
-		
+
 		main_connector(1 to 15) <= "010101010101010";
 		wait for 1 ns;
 		assert main_connector(0) = '0';
-		
+
 		main_connector(1 to 15) <= "000000111111111";
 		wait for 1 ns;
 		assert main_connector(0) = '1';
-		
+
 		main_connector(1 to 15) <= "111111111000000";
 		wait for 1 ns;
 		assert main_connector(0) = '1';
-		
+
 		main_connector(1 to 15) <= "111001101001010";
 		wait for 1 ns;
 		assert main_connector(0) = '0';
-		
+
 		main_connector(1 to 15) <= "011001100110011";
 		wait for 1 ns;
 		assert main_connector(0) = '0';
-		
+
 		main_connector(1 to 15) <= "011101100110011";
 		wait for 1 ns;
 		assert main_connector(0) = '1';
-		
+
 		wait for 90 ns;
-		
+
 		-------------- shift reg  ok --------------
-		
+
 		main_connector <= (others => 'Z');
 		wait for 1 ns;
 		switches <= "0100";
 		wait for 1 ns;
-		
+
 		main_connector(1) <= '0';
 		gen_clk(main_connector(0));
 		gen_clk(main_connector(0));
@@ -259,21 +257,21 @@ BEGIN
 		gen_clk(main_connector(0));
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "00000000000000";
-		
+
 		main_connector(1) <= '1';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "10000000000000";
-		
+
 		main_connector(1) <= '0';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "01000000000000";
-		
+
 		main_connector(1) <= '1';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "10100000000000";
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "11010000000000";
-		
+
 		main_connector(1) <= '0';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "01101000000000";
@@ -313,37 +311,36 @@ BEGIN
 		assert main_connector(2 to 15) = "00000000000000";
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "00000000000000";
-		
-		
+
 		wait for 77 ns;
 		-------------- shift reg  out --------------
-		
+
 		main_connector <= (others => 'Z');
 		wait for 1 ns;
 		switches <= "0101";
 		wait for 1 ns;
-		
+
 		main_connector(1) <= '0';
 		gen_clk(main_connector(0));
 		gen_clk(main_connector(0));
 		gen_clk(main_connector(0));
-		
+
 		assert main_connector(2 to 15) = "00001000000000";
-		
+
 		main_connector(1) <= '1';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "10001000000000";
-		
+
 		main_connector(1) <= '0';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "01001000000000";
-		
+
 		main_connector(1) <= '1';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "10101000000000";
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "11011000000000";
-		
+
 		main_connector(1) <= '0';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "01101000000000";
@@ -383,37 +380,36 @@ BEGIN
 		assert main_connector(2 to 15) = "00001000000000";
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "00001000000000";
-		
-		
+
 		wait for 20 ns;
 		-------------- shift reg  in --------------
-		
+
 		main_connector <= (others => 'Z');
 		wait for 1 ns;
 		switches <= "0110";
 		wait for 1 ns;
-		
+
 		main_connector(1) <= '0';
 		gen_clk(main_connector(0));
 		gen_clk(main_connector(0));
 		gen_clk(main_connector(0));
-		
+
 		assert main_connector(2 to 15) = "00000000000000";
-		
+
 		main_connector(1) <= '1';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "00000000000000";
-		
+
 		main_connector(1) <= '0';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "00000000000000";
-		
+
 		main_connector(1) <= '1';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "00000000000000";
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "00000000000000";
-		
+
 		main_connector(1) <= '0';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "00000000000000";
@@ -453,40 +449,36 @@ BEGIN
 		assert main_connector(2 to 15) = "00000000000000";
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "00000000000000";
-		
-		
+
 		wait for 20 ns;
-		
-		
-		
-		
+
 		-------------- shift reg  between --------------
-		
+
 		main_connector <= (others => 'Z');
 		wait for 1 ns;
 		switches <= "0111";
 		wait for 1 ns;
-		
+
 		main_connector(1) <= '0';
 		gen_clk(main_connector(0));
 		gen_clk(main_connector(0));
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "00011000000000";
-		
+
 		main_connector(1) <= '1';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "10011100000000";
-		
+
 		main_connector(1) <= '0';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "01011110000000";
-		
+
 		main_connector(1) <= '1';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "10111111000000";
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "11011111100000";
-		
+
 		main_connector(1) <= '0';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "01111111110000";
@@ -500,11 +492,11 @@ BEGIN
 		assert main_connector(2 to 15) = "00011111111111";
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "00011111111111";
-		
+
 		main_connector(1) <= '1';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "10011111111111";
-		
+
 		main_connector(1) <= '0';
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "01011111111111";
@@ -516,71 +508,67 @@ BEGIN
 		assert main_connector(2 to 15) = "00011111111111";
 		gen_clk(main_connector(0));
 		assert main_connector(2 to 15) = "00011111111111";
-		
+
 		wait for 41 ns;
-		
+
 		-------------- adder --------------
-		
+
 		main_connector <= (others => 'Z');
 		wait for 1 ns;
 		switches <= "1000";
 		wait for 1 ns;
-		
+
 		main_connector(0) <= '0';
 		main_connector(1) <= '0';
 		gen_clk(main_connector(2));
 		gen_clk(main_connector(2));
 		gen_clk(main_connector(2));
 		assert main_connector(3) = '0';
-		
+
 		-- add 43 + 37 = 80
 		main_connector(0) <= '1';
 		main_connector(1) <= '1';
 		wait for 1 ns;
 		assert main_connector(3) = '0';
 		gen_clk(main_connector(2));
-		
+
 		main_connector(0) <= '1';
 		main_connector(1) <= '0';
 		wait for 1 ns;
 		assert main_connector(3) = '0';
 		gen_clk(main_connector(2));
-		
+
 		main_connector(0) <= '0';
 		main_connector(1) <= '1';
 		wait for 1 ns;
 		assert main_connector(3) = '0';
 		gen_clk(main_connector(2));
-		
+
 		main_connector(0) <= '1';
 		main_connector(1) <= '0';
 		wait for 1 ns;
 		assert main_connector(3) = '0';
 		gen_clk(main_connector(2));
-		
-		
+
 		main_connector(0) <= '0';
 		main_connector(1) <= '0';
 		wait for 1 ns;
 		assert main_connector(3) = '1';
 		gen_clk(main_connector(2));
-		
-		
+
 		main_connector(0) <= '1';
 		main_connector(1) <= '1';
 		wait for 1 ns;
 		assert main_connector(3) = '0';
 		gen_clk(main_connector(2));
-		
-		
+
 		main_connector(0) <= '0';
 		main_connector(1) <= '0';
 		wait for 1 ns;
 		assert main_connector(3) = '1';
 		gen_clk(main_connector(2));
 		assert main_connector(3) = '0';
-		
-		
+
 		wait;
 	end process;
 

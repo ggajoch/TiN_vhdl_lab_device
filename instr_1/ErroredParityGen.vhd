@@ -10,9 +10,8 @@ end ErroredParityGen;
 
 architecture Behavioral of ErroredParityGen is
 	signal errored_input : std_logic_vector(0 to IN_LEN - 1);
-	signal input_xor : std_logic_vector(0 to IN_LEN - 1);
+	signal input_xor     : std_logic_vector(0 to IN_LEN - 1);
 begin
-			
 	Stuck_At_inst : entity work.Stuck_At
 		generic map(
 			LEN => IN_LEN
@@ -24,9 +23,8 @@ begin
 			stuck_val => "001000000000000"
 		);
 
-	input_xor <= errored_input when switches = "0011" else 
-				 input_data;
-				  
+	input_xor <= errored_input when switches = "0011" else input_data;
+
 	ParityGen_inst : entity work.ParityGen
 		generic map(
 			IN_LEN => IN_LEN

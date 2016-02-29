@@ -12,25 +12,18 @@ entity ErroredShiftRegister is
 end ErroredShiftRegister;
 
 architecture Behavioral of ErroredShiftRegister is
-	signal errored_data_in : std_logic;
-	signal reg_data_out    : std_logic_vector(0 to LEN - 1);
-	signal stuck_en        : std_logic_vector(0 to LEN - 1);
-	signal stuck_val       : std_logic_vector(0 to LEN - 1);
+	signal errored_data_in                 : std_logic;
+	signal reg_data_out                    : std_logic_vector(0 to LEN - 1);
+	signal stuck_en                        : std_logic_vector(0 to LEN - 1);
+	signal stuck_val                       : std_logic_vector(0 to LEN - 1);
 	signal data_out_normal, data_out_stuck : std_logic_vector(0 to LEN - 1);
-	signal stuck : std_logic;
+	signal stuck                           : std_logic;
 begin
-	stuck_en  <= "00000000000000" when switches = "0100" else 
-				 "00001000000000" when switches = "0101" else 
-				 "00000000000000" when switches = "0110" else
-				 "00000000000000";
-				 
-	stuck_val <= "00000000000000" when switches = "0100" else 
-				 "00001000000000" when switches = "0101" else 
-				 "00000000000000" when switches = "0110" else 
-				 "00000000000000";
+	stuck_en <= "00000000000000" when switches = "0100" else "00001000000000" when switches = "0101" else "00000000000000" when switches = "0110" else "00000000000000";
 
-	errored_data_in <= '0' when switches = "0110" else
-					   data_in;
+	stuck_val <= "00000000000000" when switches = "0100" else "00001000000000" when switches = "0101" else "00000000000000" when switches = "0110" else "00000000000000";
+
+	errored_data_in <= '0' when switches = "0110" else data_in;
 
 	shiftRegister_inst : entity work.shiftRegister
 		generic map(
@@ -53,8 +46,7 @@ begin
 			stuck_en  => stuck_en,
 			stuck_val => stuck_val
 		);
-		
-		
+
 	shiftRegisterSerialError_inst : entity work.shiftRegisterSerialError
 		generic map(
 			LEN => LEN
@@ -66,9 +58,7 @@ begin
 			stuck    => stuck,
 			data_out => data_out_stuck
 		);
-	stuck <= '1' when switches = "0111" else
-			 '0';
-	data_out <= data_out_stuck when switches = "0111" else
-		data_out_normal;
+	stuck    <= '1' when switches = "0111" else '0';
+	data_out <= data_out_stuck when switches = "0111" else data_out_normal;
 end Behavioral;
 
