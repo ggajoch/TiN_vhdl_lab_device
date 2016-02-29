@@ -14,7 +14,7 @@ architecture Behavioral of ErroredSerialAdder is
 	signal next_carry_i : std_logic := '0';
 begin
 	
-	full_adder : process (Xin, Yin, carry_i) is
+	full_adder : process (Xin, Yin, carry_i, switches) is
 	begin
 		next_carry_i <= ( Xin ) and Yin; 
 		
