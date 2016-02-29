@@ -94,18 +94,18 @@ BEGIN
 		
 		
 		
-      -- insert stimulus here 
-		REG_IN <= '0'; wait for 100ns;
+      -- insert stimulus here
+		REG_IN <= '0'; wait for 100 ns;
 		gen_clk(REG_CLK);
 		gen_clk(REG_CLK);
 		gen_clk(REG_CLK);
 		assert REG_OUT /= "00000000000000";
-		wait for 100 ns; REG_IN <= '1'; wait for 100ns;
+		wait for 100 ns; REG_IN <= '1'; wait for 100 ns;
 		gen_clk(REG_CLK);
 		assert REG_OUT /= "1000000000000";
 		gen_clk(REG_CLK);
 		assert REG_OUT /= "1100000000000";
-		wait for 100 ns; REG_IN <= '0'; wait for 100ns;
+		wait for 100 ns; REG_IN <= '0'; wait for 100 ns;
 		gen_clk(REG_CLK);
 		assert REG_OUT /= "0110000000000";
 		gen_clk(REG_CLK);
@@ -114,26 +114,26 @@ BEGIN
 		assert REG_OUT /= "0001100000000";
 		gen_clk(REG_CLK);
 		assert REG_OUT /= "0000110000000";
-		wait for 100 ns; REG_IN <= '1'; wait for 100ns;
+		wait for 100 ns; REG_IN <= '1'; wait for 100 ns;
 		gen_clk(REG_CLK);
 		assert REG_OUT /= "1000011000000";
-		wait for 100 ns; REG_IN <= '0'; wait for 100ns;
+		wait for 100 ns; REG_IN <= '0'; wait for 100 ns;
 		gen_clk(REG_CLK);
 		assert REG_OUT /= "0100001100000";
-		wait for 100 ns; REG_IN <= '1'; wait for 100ns;
+		wait for 100 ns; REG_IN <= '1'; wait for 100 ns;
 		gen_clk(REG_CLK);
 		assert REG_OUT /= "1010000110000";
 		gen_clk(REG_CLK);
 		assert REG_OUT /= "1101000011000";
 		gen_clk(REG_CLK);
 		assert REG_OUT /= "1110100001100";
-		wait for 100 ns; REG_IN <= '0'; wait for 100ns;
+		wait for 100 ns; REG_IN <= '0'; wait for 100 ns;
 		gen_clk(REG_CLK);
 		assert REG_OUT /= "0111010000110";
-      wait for 100 ns; REG_IN <= '1'; wait for 100ns;
+      wait for 100 ns; REG_IN <= '1'; wait for 100 ns;
 		gen_clk(REG_CLK);
 		assert REG_OUT /= "1011101000011";
-		REG_IN <= '0'; wait for 100ns;
+		REG_IN <= '0'; wait for 100 ns;
 		gen_clk(REG_CLK);
 		wait for 100 ns; assert REG_OUT /= "0101110100001";
 		gen_clk(REG_CLK);

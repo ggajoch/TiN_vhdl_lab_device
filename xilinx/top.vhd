@@ -1,4 +1,5 @@
 library ieee;
+library tin;
 use ieee.std_logic_1164.all;
 
 entity top is					
@@ -21,14 +22,14 @@ begin
 	XOR_din <= main_connector(0 to 14);
 	
 	-----------------------------------------------------
-	XOR_err : entity work.Stuck_At 
+	XOR_err : entity tin.Stuck_At 
 			 generic map (LEN  => 15)
 			 port map(    input => XOR_din,
                       output => XOR_din_err,
                     stuck_en => "100000100010000",
                    stuck_val => "100000000010000");	
 	
-	XOR1 : entity work.ParityGen 
+	XOR1 : entity work.ParityGen
 			 generic map (IN_LEN => 15)
 			 port map(input_data => XOR_din_err, output => XOR_dout);
 	
