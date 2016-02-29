@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity ic_7483 is
+entity ic_7483_1 is
 	port(
 		c0 : in  std_logic;
 		a0 : in  std_logic;
@@ -19,9 +19,9 @@ entity ic_7483 is
 		s3 : out std_logic;
 		c4 : out std_logic
 	);
-end entity ic_7483;
+end entity ic_7483_1;
 
-architecture RTL of ic_7483 is
+architecture RTL of ic_7483_1 is
 	signal d0, d1, d2, d3, d4, d5, d6, d7, d8                                                  : std_logic;
 	signal e0, e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18 : std_logic;
 	signal f1, f2, f3                                                                          : std_logic;
@@ -52,7 +52,7 @@ begin
 	e7 <= d3;
 	e8 <= (not d5) and d6;
 
-	e9  <= d0 and d2 and d4 and d6;
+	e9  <= '1';--d0 and d2 and d4 and d6;
 	e10 <= d1 and d4 and d6;
 	e11 <= d3 and d6;
 	e12 <= d5;
