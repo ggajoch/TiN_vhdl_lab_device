@@ -16,8 +16,8 @@ architecture Behavioral of c17_3 is
 begin
 	mid1 <= not (in0 and in2);
 	mid2 <= not (in2 and in3);
-	mid3 <= '0';--not (in1 and mid2);
-	mid4 <= not (in4 and mid2);
+	mid3 <= not (in1 and mid2);
+	mid4 <= '1'; --not (in4 and mid2);
 	out0 <= not (mid1 and mid3);
 	out1 <= not (mid3 and mid4);
 end Behavioral;
