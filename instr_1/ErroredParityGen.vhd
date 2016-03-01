@@ -23,7 +23,8 @@ begin
 			stuck_val => "001000000000000"
 		);
 
-	input_xor <= errored_input when switches = "0011" else input_data;
+	input_xor <= errored_input when switches = "0011" 
+				 else input_data;
 
 	ParityGen_inst : entity work.ParityGen
 		generic map(

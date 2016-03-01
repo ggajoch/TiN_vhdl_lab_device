@@ -14,7 +14,9 @@ architecture func of top is
 	signal ErroredShiftRegister_out : std_logic_vector(0 to 13);
 	signal serialAdder_out          : std_logic;
 begin
-	leds <= main_connector(0 to 3) when switches = "0000" else shiftReg4b_out when switches = "0001" else "0000";
+	leds <= main_connector(0 to 3) when switches = "0000" else 
+			shiftReg4b_out when switches = "0001" else 
+			"0000";
 
 	shiftRegister4b_inst : entity work.shiftRegister
 		generic map(
@@ -58,7 +60,7 @@ begin
 			switches => switches
 		);
 
-	output_connector_process : process(btns, switches, shiftReg4b_out, ErroredShiftRegister_out, Errored_ParityGen_out, serialAdder_out) is
+	output_connector_process : 	process(switches, ErroredShiftRegister_out, Errored_ParityGen_out, btns, serialAdder_out, shiftReg4b_out) is
 	begin
 		main_connector <= (others => 'Z');
 		case switches is
@@ -76,7 +78,4 @@ begin
 		end case;
 	end process output_connector_process;
 
------------------------------------------------------
-
---	main_connector <= "ZZ" & REG_dout_err & "ZZZZZZZZ" when data(0) = '0' else "ZZZZZZZZZZZZZZZ" & XOR_dout & "ZZZZZZZZ";
 end func;

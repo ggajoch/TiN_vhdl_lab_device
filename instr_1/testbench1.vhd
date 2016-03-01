@@ -184,6 +184,10 @@ BEGIN
 		wait for 1 ns;
 		assert main_connector(0) = '1';
 
+		main_connector(1 to 15) <= "011011101110111";
+		wait for 1 ns;
+		assert main_connector(0) = '1';
+
 		wait for 88 ns;
 
 		-------------- parity gen with error --------------
