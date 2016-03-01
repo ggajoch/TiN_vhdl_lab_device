@@ -17,7 +17,8 @@ entity ic_7483 is
 		s1 : out std_logic;
 		s2 : out std_logic;
 		s3 : out std_logic;
-		c4 : out std_logic
+		c4 : out std_logic;
+		switches : in std_logic_vector(0 to 3)
 	);
 end entity ic_7483;
 
@@ -32,7 +33,8 @@ begin
 	d2 <= not (a0 and b0);
 
 	d3 <= not (a1 or b1);
-	d4 <= not (a1 and b1);
+	d4 <= '1' when switches = "0101" else
+		  not (a1 and b1) ;
 
 	d5 <= not (a2 or b2);
 	d6 <= not (a2 and b2);
@@ -40,15 +42,17 @@ begin
 	d7 <= not (a3 or b3);
 	d8 <= not (a3 and b3);
 
-	e0 <= not d0;--
-	e1 <= (not d1) and d2;
+	e0 <= not d0;
+	e1 <= '1' when switches = "0110" else
+		  (not d1) and d2;
 
 	e2 <= d0 and d2;
 	e3 <= d1;
 	e4 <= (not d3) and d4;
 
 	e5 <= d0 and d2 and d4;
-	e6 <= d1 and d4;
+	e6 <= '0' when switches = "0111" else
+		  d1 and d4;
 	e7 <= d3;
 	e8 <= (not d5) and d6;
 
